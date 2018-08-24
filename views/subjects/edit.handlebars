@@ -1,0 +1,38 @@
+{{#each errors}}
+<div class="alert alert-danger">{{text}}</div>
+{{else}} {{/each}}
+<div class="card card-body">
+  <h3 class="text-center bg-warning">Edit Subject</h3>
+  <form action="/subjects/{{subject.id}}?_method=PUT" method="post">
+    <input type="hidden" name=_method value="PUT">
+    <div class="form-group">
+      <label for="code">Code</label>
+      <input type="text" class="form-control" name="code" value="{{subject.code}}">
+    </div>
+    <div class="form-group">
+      <label for="type">Type</label>
+      <input type="text" class="form-control" name="type" value="{{subject.type}}">
+    </div>
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" name="name" value="{{subject.name}}">
+    </div>
+    <div class="form-group">
+      <label for="description">Syllabus</label>
+      <textarea class="form-control" name="description">{{subject.description}}</textarea>
+    </div>
+    <div class="form-group">
+      <label for="imageRootFolderURL">Root folder link for Images</label>
+      <input type="text" class="form-control" name="imageRootFolderURL" value="{{subject.imageRootFolderURL}}">
+    </div>
+    <div class="form-group">
+      <label for="notebookRootFolderURL">Root folder link for Notebooks</label>
+      <input type="text" class="form-control" name="notebookRootFolderURL" value="{{subject.notebookRootFolderURL}}">
+    </div>
+    <div class="form-group">
+      <label for="name">Image</label>
+      <input type="text" class="form-control" name="image" value="{{subject.image}}">
+    </div>
+   <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>

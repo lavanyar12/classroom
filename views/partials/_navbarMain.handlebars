@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top navbar-static-top">
+  <div class="container">
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a href="/home" class="navbar-brand">Mr Drake's Classroom</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/about">Syllabus</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        {{#if user}}
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarDropdownMenuLink">Marine Biology</a>
+            <div class="dropdown-menu w-25">
+              <a href="/lessons/view/MB/1" class="dropdown-item">Semester 1</a>
+              <a href="/lessons/view/MB/2" class="dropdown-item">Semester 2</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarDropdownMenuLink">Geology</a>
+            <div class="dropdown-menu w-25">
+              <a href="/lessons/view/GEO/1" class="dropdown-item">Semester 1</a>
+              <a href="/lessons/view/GEO/2" class="dropdown-item">Semester 2</a>
+            </div>
+          </li>
+          <li class="nav-item">
+          <a href="/users/studentlogout" class="nav-link">Logout</a>
+          </li>
+        {{else}}
+          <li class="nav-item">
+            <a href="/users/studentlogin" class="nav-link">Login</a>
+          </li>
+        {{/if}}
+      </ul>
+    </div>
+  </div>
+
+</nav>

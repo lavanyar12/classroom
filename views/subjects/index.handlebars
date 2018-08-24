@@ -1,0 +1,43 @@
+{{#each subjects}}
+
+<div class="card card-body mb-2">
+
+  <h4>{{code}} - {{name}}</h4>
+  <p>{{type}}</p>
+  <p>{{description}}</p>
+  <p>{{image}}</p>
+  <p>Image URL: {{imageRootFolderURL}}</p>
+  <p>Notebook URL: {{notebookRootFolderURL}}</p>
+  <a class="btn btn-info btn-block" href="/subjects/edit/{{id}}">Edit</a>
+  <!-- <input type="submit" class="btn btn-danger btn-block" value="Delete"> -->
+
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#{{id}}">Delete</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="{{id}}" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to delete
+            <strong> {{name}} </strong> subject?</p>
+        </div>
+        <div class="modal-footer">
+          <form method="post" action="/subjects/{{id}}?_method=DELETE" method="post">
+            <input type="hidden" name=_method value="DELETE">
+            <button type="submit" class="btn btn-success" id="modal-btn-yes">Yes</button>
+          </form>
+          <button type="button" class="btn btn-danger" data-dismiss="modal" id="modal-btn-no">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{else}}
+<p>No subjects available to list</p>
+{{/each}}

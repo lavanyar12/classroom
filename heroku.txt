@@ -1,0 +1,17 @@
+projects/node/classroomlab
+
+create git repo
+git init
+git add .
+git commit -am "initial commit"
+
+install heroku CLI
+
+heroku login
+
+heroku create
+
+check on heroku dashboard
+safe-forest... -> Deploy -> 
+heroku git:remote -a safe-forest-28454
+git push heroku master

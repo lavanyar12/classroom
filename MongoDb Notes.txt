@@ -1,0 +1,81 @@
+Node
+Express
+
+premaseem.wordpress.com
+
+MongoDB - deployment to MLAB (free)
+ -use both local and remote version of MongoDB
+ -noSQL database
+ -no tables, schema less
+ -uses collections
+ -hook up to your application
+ -Mongoose - a module to nodeJS with ORM (similar to hibernate but for Node)
+ -MLAB hosting cloud Mongo database (lavanyar12)
+ -Heroku hosting nodeJs app (lavanyar12)
+ -github (lavanyar12)
+
+mongo commands
+2 terminal windows - make sure PATH is set in bashrc
+. ~/.bashrc
+$mongod --dbpath /et/software/mongodb/data/db
+
+$mongo
+
+>use admin
+
+>db.shutdownServer()
+
+> show dbs
+2018-04-28T13:26:37.116-0700 I NETWORK  [thread1] trying reconnect to 127.0.0.1:27017 (127.0.0.1) failed
+2018-04-28T13:26:37.117-0700 I NETWORK  [thread1] reconnect 127.0.0.1:27017 (127.0.0.1) ok
+admin       0.000GB
+config      0.000GB
+local       0.000GB
+vidjot-dev  0.000GB
+
+> use vidjot-dev
+switched to db vidjot-dev
+
+> show collections
+ideas
+
+
+> db.ideas.find()
+{ "_id" : ObjectId("5ae4d89b1710a2089baadf51"), "title" : "1212", "details" : "121212", "date" : ISODate("2018-04-28T20:24:59.067Z"), "__v" : 0 }
+
+
+> db.ideas.drop()
+
+
+start mongodb
+EXPORT run this to export authors collection from csvimport database
+mongoexport --db csvimport --collection users --out users.json
+mongoexport --db csvimport --collection subjects --out subjects.json
+mongoexport --db csvimport --collection lessons --out lessons.json
+
+IMPORT - make sure there is an EOF and newline between the row is csv and tsv
+mongoimport --db classroom --collection subjects --type json subjects.json
+mongoimport --db classroom --collection lessons --type json lessons.json
+mongoimport --db classroom --collection users --type json users.json
+
+mongoimport -h ds249565.mlab.com:49565 -d classroom-prod users --type json <user> -p <password>
+mongoimport -h ds249565.mlab.com:49565 -d classroom-prod -c users -u classroom -p knowledge101 --file users.json --type json
+mongoimport -h ds249565.mlab.com:49565 -d classroom-prod -c subjects -u classroom -p knowledge101 --file subjects.json --type json
+mongoimport -h ds249565.mlab.com:49565 -d classroom-prod -c lessons -u classroom -p knowledge101 --file lessons.json --type json
+
+
+$ mongoimport --db csvimport --collection subjects --type csv subjects.csv --headerline
+$ mongoimport --db csvimport --collection lessons --type csv lessons.csv --headerline
+$ mongoimport --db csvimport --collection lessons --type tsv drake.txt --headerline
+
+mongoimport --db csvimport --collection lessons --type tsv lessonsV3.txt --headerline
+
+
+>db.authors.count()
+
+
+To connect using the mongo shell:
+mongo ds249565.mlab.com:49565/classroom-prod -u <dbuser> -p <dbpassword>
+
+To connect using a driver via the standard MongoDB URI (what's this?):
+mongodb://<dbuser>:<dbpassword>@ds249565.mlab.com:49565/classroom-prod

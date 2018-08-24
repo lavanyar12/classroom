@@ -1,0 +1,3 @@
+code	type	name	description	imageRootFolderURL	image
+GEO	COURSE	Geology	Geology Course	c:/Geology	geo.jpg
+MB	COURSE	Marine Biology	Marine Bio Course	c:/MarineBiology	marine.jpg
