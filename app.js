@@ -106,6 +106,13 @@ app.get('/home', (req, res) => {
   })
 })
 
+// HOME page
+app.get('/', (req, res) => {
+  res.render('home', {
+    layout: 'main'
+  })
+})
+
 //Use routes
 app.use('/lessons', lessons)
 app.use('/subjects', subjects)
