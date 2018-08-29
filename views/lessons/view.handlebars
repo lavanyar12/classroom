@@ -8,21 +8,19 @@
         <div class="card bg-info text-center card-form mt-2">
           <div class="card-body">
 
-            <h3 class="card-title">{{lessonId}}. {{title}}</h3>
-            <p>{{description}}</p>
-            <h3>Video Clip</h3>
-            <p>{{videoTitle}}</p>
-            <p>{{videoLink}}</p>
-            <h3>Career</h3>
-            <p>{{careerTitle}}</p>
-            <p>{{careerLink}}</p>
-            <h3>Movie</h3>
-            <p>{{movieTitle}} - {{movieLink}}</p>
-            <p></p>
+            <h3 class="card-title">Notebook {{lessonId}} - {{title}}</h3>
+            <p class="text-md-center">{{description}}</p>
+            <h3>Video Clip<h3>
+            <a class="btn btn-dark" target="_blank" href={{videoLink}}>{{videoTitle}}</a>
             <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" src="{{videoLink}}" allowfullscreen></iframe>
+            <iframe class="embed-responsive-item" src="{{videoLink}}" allowfullscreen></iframe></div>
+            <h3>Career</h3>
+            <a class="btn btn-dark" target="_blank" href={{careerLink}}>{{careerTitle}}</a>
+            <h3>Movie</h3>
+            <a class="btn btn-dark" target="_blank" href={{movieLink}}>{{movieTitle}}</a>
+            <div class="embed-responsive embed-responsive-4by3">
+            <iframe class="embed-responsive-item" src="{{movieLink}}" allowfullscreen></iframe>
             </div>
-            <p>Notebook</p>
             <p>{{documentLink}}</p>
             <p>{{image}}</p>
             <!--
