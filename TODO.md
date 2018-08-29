@@ -1,9 +1,4 @@
-# classroom lab TODO
+# classroom
 
-prepare app for deployment
-deploy
-add CI/CD pipeline
-
-Next
-- create git repo
-- install Heroku toolbelt CLI to interact with Heroku
+enhance public site 
+show classes based on student roles
