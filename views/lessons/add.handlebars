@@ -3,7 +3,16 @@
   <form action="/lessons" method="post">
     <div class="form-group">
       <label for="subject">Subject</label>
-      <input type="text" class="form-control" name="subject">
+      <input id="subjectId" type="hidden" class="form-control" name="subject" value="{{lesson.subject}}">
+      <select id="subjectOption" class="selectpicker" data-style="btn-info" onload="load()" title="Choose a subject" onchange="run()">
+        <option value="MB">Marine Biology</option>
+        <option value="GEO">Geology</option>
+      </select>
+      <script>
+        function run() {
+          document.getElementById("subjectId").value = document.getElementById("subjectOption").value;
+        }
+      </script>
     </div>
     <div class="form-group">
       <label for="semester">Semester</label>
