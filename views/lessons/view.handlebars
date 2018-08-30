@@ -9,38 +9,39 @@
           <div class="card-body">
 
             <h3 class="card-title">Notebook {{lessonId}} - {{title}}</h3>
-            <p class="text-md-center">{{description}}</p>
-            <h3>Video Clip<h3>
-            <a class="btn btn-danger" target="_blank" href={{videoLink}}>{{videoTitle}}</a>
-            <div class="iframe-container mt-2">
-              <iframe src="{{videoLink}}" allowfullscreen></iframe>
-            </div>
+              <p class="text-md-center">{{description}}</p>
             <hr>
-            <div>
+
+            <h3>Video Clip<h3>
+             <a class="btn btn-danger" target="_blank" href={{videoLink}}>{{videoTitle}}</a>
+ 
+            <div class="wrapper mt-2">
+              <div class="h_iframe">
+               <img class="ratio" src="http://placehold.it/16x9"/>
+                 <iframe src="{{videoLink}}" allowfullscreen></iframe>
+              </div>
+            </div>
+
+            <hr>
+
             <h3>Career</h3>
               <a class="btn btn-danger" target="_blank" href={{careerLink}}>{{careerTitle}}</a>
             <hr>
-            </div>
+            
             <h3>Movie</h3>
               <a class="btn btn-danger" target="_blank" href={{movieLink}}>{{movieTitle}}</a>
-            <div class="mt-2 embed-responsive embed-responsive-16by9">
-              <iframe class="embed-responsive-item" src="{{movieLink}}" allowfullscreen></iframe>
+
+            <div class="wrapper mt-2">
+             <div class="h_iframe">
+                <img class="ratio" src="http://placehold.it/16x9"/>
+                <iframe src="{{movieLink}}" allowfullscreen></iframe>
+              </div>
             </div>
-            <!--div class="iframe-container">
-              <iframe src="//www.youtube.com/embed/KMYrIi_Mt8A" allowfullscreen></iframe>
-            </div-->
+
             <p>{{documentLink}}</p>
             <p>{{image}}</p>
-            <!--
-            <div class="imgwrapper">
-            <img src="http://www.dropbox.com/sh/wicmo16uxzcoql4/AAB_u_DRNKmQPUkbqJDMTH_ha/GEO/images?dl=0&preview=GEO.jpeg" class="img-responsive">
-            </div>-->
-
-
-
-          </div>
+           </div>
         </div>
-
 
         {{else}}
         <div class="alert bg-info text-light text-center">
