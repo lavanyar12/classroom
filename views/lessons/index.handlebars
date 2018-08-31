@@ -2,74 +2,88 @@
   Found {{count}} lessons for {{subject}} - Semester {{semester}}
 </div>
 {{#each lessons}}
-<div class="card card-body mb-2">
-  <h4 class="card-title">Notebook {{lessonId}} - {{title}}</h4>
-  <ul class="list-group">
-    <li class="list-group-item">
-      <h6>Description:</h6>
-      <p>{{description}}</p>
-    </li>
-    <li class="list-group-item">
-      <h6>Video Title:</h6>
-      <p>{{videoTitle}}</p>
-    </li>
-    <li class="list-group-item">
-      <h6>Video Link:</h6>
-      <p>{{videoLink}}</p>
-    </li>
-    <li class="list-group-item">
-      <h6>Career Title:</h6>
-      <p>{{careerTitle}}</p>
-    </li>
-    <li class="list-group-item">
-      <h6>Career Link:</h6>
-      <p></p>{{careerLink}}</p>
-    </li>
-    <li class="list-group-item">
-      <h6>Movie Title:</h6>
-      <p>{{movieTitle}}</p>
-    </li>
-    <li class="list-group-item">
-      <h6>Movie Link:</h6>
-      <p>{{movieLink}}</p>
-    </li>
-    <li class="list-group-item">
-      <h6>Document Link:</h6>
-      <p>{{documentLink}}</p>
-    </li>
-    <li class="list-group-item">
-      <h6>Image Name:</h6>
-      <p>{{image}}</p>
-    </li>
-  </ul>
-  <a class="btn btn-info btn-block mb-2" href="/lessons/edit/{{id}}">Edit</a>
-  <!--<input type="submit" class="btn btn-dark btn-block" value="Delete"> -->
-  <!-- Trigger the modal with a button -->
-  <button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#{{id}}">Delete {{title}}</button>
+    <!-- ACCORDION -->
+    <div id="accordion" role="tablist">
 
-  <!-- Modal -->
-  <div class="modal fade" id="{{id}}" role="dialog">
-    <div class="modal-dialog modal-sm">
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <div class="card text-dark bg-light mb-3">
+
+        <div class="card-header" role="tab" id="heading">
+          <h5 class="mb-2"><a href="#{{semester}}-{{lessonId}}" data-parent="#accordion" data-toggle="collapse">
+            Notebook {{lessonId}} - {{title}}
+          </a></h5>
         </div>
-        <div class="modal-body">
-          <p>Are you sure you want to delete lesson
-            <strong> {{title}} </strong>?</p>
-        </div>
-        <div class="modal-footer">
-          <form method="post" action="/lessons/{{id}}?_method=DELETE" method="post">
-            <input type="hidden" name=_method value="DELETE">
-            <button type="submit" class="btn btn-success" id="modal-btn-yes">Yes</button>
-          </form>
-          <button type="button" class="btn btn-danger" data-dismiss="modal" id="modal-btn-no">No</button>
+
+        <div id="{{semester}}-{{lessonId}}" class="card-body mb-2 collapse">
+          <h4 class="card-title">Notebook {{lessonId}} - {{title}}</h4>
+          <ul class="list-group">
+            <li class="list-group-item">
+              <h6>Description:</h6>
+              <p>{{description}}</p>
+            </li>
+            <li class="list-group-item">
+              <h6>Video Title:</h6>
+              <p>{{videoTitle}}</p>
+            </li>
+            <li class="list-group-item">
+              <h6>Video Link:</h6>
+              <p>{{videoLink}}</p>
+            </li>
+            <li class="list-group-item">
+              <h6>Career Title:</h6>
+              <p>{{careerTitle}}</p>
+            </li>
+            <li class="list-group-item">
+              <h6>Career Link:</h6>
+              <p></p>{{careerLink}}</p>
+            </li>
+            <li class="list-group-item">
+              <h6>Movie Title:</h6>
+              <p>{{movieTitle}}</p>
+            </li>
+            <li class="list-group-item">
+              <h6>Movie Link:</h6>
+              <p>{{movieLink}}</p>
+            </li>
+            <li class="list-group-item">
+              <h6>Document Link:</h6>
+              <p>{{documentLink}}</p>
+            </li>
+            <li class="list-group-item">
+              <h6>Image Name:</h6>
+              <p>{{image}}</p>
+            </li>
+          </ul>
+          <a class="btn btn-info btn-block mb-2" href="/lessons/edit/{{id}}">Edit</a>
+          <!--<input type="submit" class="btn btn-dark btn-block" value="Delete"> -->
+          <!-- Trigger the modal with a button -->
+          <button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#{{id}}">Delete {{title}}</button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="{{id}}" role="dialog">
+            <div class="modal-dialog modal-sm">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                  <p>Are you sure you want to delete lesson
+                    <strong> {{title}} </strong>?</p>
+                </div>
+                <div class="modal-footer">
+                  <form method="post" action="/lessons/{{id}}?_method=DELETE" method="post">
+                    <input type="hidden" name=_method value="DELETE">
+                    <button type="submit" class="btn btn-success" id="modal-btn-yes">Yes</button>
+                  </form>
+                  <button type="button" class="btn btn-danger" data-dismiss="modal" id="modal-btn-no">No</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+
     </div>
-  </div>
-</div>
 
 {{else}}
 <!--
