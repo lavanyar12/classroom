@@ -48,10 +48,10 @@ body {
     width:130px;
     margin:auto; }
 
-.wrapper         {
-  width:80%;height:100%;margin:0 auto;background:#CCC}
+.wrapper {
+  width:60%;height:60%;margin:0 auto;background:#CCC}
 
-.h_iframe        {
+.h_iframe {
   position:relative;}
 
 .h_iframe .ratio {
