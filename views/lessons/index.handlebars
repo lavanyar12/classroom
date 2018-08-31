@@ -1,20 +1,26 @@
-<div class="alert bg-dark text-light text-center mt-2">
+{{#if semester}}
+<div class="alert bg-success text-light text-center mt-2">
   Found {{count}} lessons for {{subject}} - Semester {{semester}}
 </div>
+{{else}}
+  <div class="alert bg-secondary text-light text-center mt-2">
+    Listing of all {{count}} lessons
+  </div>
+{{/if}}
+
 {{#each lessons}}
     <!-- ACCORDION -->
     <div id="accordion" role="tablist">
 
-      <div class="card text-dark bg-light mb-3">
+      <div class="card text-dark bg-light mt-3">
 
         <div class="card-header" role="tab" id="heading">
-          <h5 class="mb-2"><a href="#{{semester}}-{{lessonId}}" data-parent="#accordion" data-toggle="collapse">
-            Notebook {{lessonId}} - {{title}}
+          <h5 class="mb-2"><a class="text-dark" href="#{{subject}}:{{semester}}:{{lessonId}}" data-parent="#accordion" data-toggle="collapse">
+            {{subject}} : Notebook {{lessonId}} - {{title}}
           </a></h5>
         </div>
 
-        <div id="{{semester}}-{{lessonId}}" class="card-body mb-2 collapse">
-          <h4 class="card-title">Notebook {{lessonId}} - {{title}}</h4>
+        <div id="{{subject}}:{{semester}}:{{lessonId}}" class="card-body mb-2 collapse">
           <ul class="list-group">
             <li class="list-group-item">
               <h6>Description:</h6>
@@ -23,24 +29,18 @@
             <li class="list-group-item">
               <h6>Video Title:</h6>
               <p>{{videoTitle}}</p>
-            </li>
-            <li class="list-group-item">
               <h6>Video Link:</h6>
               <p>{{videoLink}}</p>
             </li>
             <li class="list-group-item">
               <h6>Career Title:</h6>
               <p>{{careerTitle}}</p>
-            </li>
-            <li class="list-group-item">
               <h6>Career Link:</h6>
               <p></p>{{careerLink}}</p>
             </li>
             <li class="list-group-item">
               <h6>Movie Title:</h6>
               <p>{{movieTitle}}</p>
-            </li>
-            <li class="list-group-item">
               <h6>Movie Link:</h6>
               <p>{{movieLink}}</p>
             </li>
