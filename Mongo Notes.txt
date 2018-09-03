@@ -12,7 +12,7 @@ MongoDB - deployment to MLAB (free)
 mongo commands
 2 terminal windows - make sure PATH is set in bashrc
 . ~/.bashrc
-$mongod --dbpath /et/software/mongodb/data/db
+mongod --dbpath /et/software/mongodb/data/db
 
 $mongo
 
