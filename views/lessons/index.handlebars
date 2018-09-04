@@ -56,10 +56,10 @@
           <a class="btn btn-info btn-block mb-2" href="/lessons/edit/{{id}}">Edit</a>
           <!--<input type="submit" class="btn btn-dark btn-block" value="Delete"> -->
           <!-- Trigger the modal with a button -->
-          <button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#{{id}}">Delete {{title}}</button>
+          <button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#delete{{id}}">Delete {{title}}</button>
 
           <!-- Modal -->
-          <div class="modal fade" id="{{id}}" role="dialog">
+          <div class="modal fade" id="delete{{id}}" role="dialog">
             <div class="modal-dialog modal-sm">
               <!-- Modal content-->
               <div class="modal-content">

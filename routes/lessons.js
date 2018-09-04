@@ -42,8 +42,8 @@ router.get('/edit/:id', ensureAuthenticated, adminUser, (req, res) => {
 })
 
 // --------- DELETE Lesson
-router.delete('/:id', ensureAuthenticated, adminUser, (req, res) => {
-  Lesson.deleteOne({
+router.delete('/:id', adminUser, (req, res) => {
+   Lesson.deleteOne({
     _id: req.params.id
   })
     .then(() => {
@@ -148,6 +148,7 @@ router.post('/', ensureAuthenticated, adminUser, (req, res) => {
       movieLink: req.body.movieLink,
       documentLink: req.body.documentLink,
       image: req.body.image
+      //showVideoLink: false
     })
   } else {
 
