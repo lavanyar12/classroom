@@ -27,7 +27,6 @@ var lessonSchema = Schema({
         type: String
     },
     videoLink: String,
-    showVideoLink: Boolean,
     careerTitle: {
         type: String
     },
@@ -37,7 +36,6 @@ var lessonSchema = Schema({
         required: false
     },
     movieLink: String,
-    showMovieLink: Boolean,
     documentLink: String,
     image: String
 })
