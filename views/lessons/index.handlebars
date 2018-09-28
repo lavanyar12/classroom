@@ -27,26 +27,34 @@
               <p>{{description}}</p>
             </li>
             <li class="list-group-item">
-              <h6>Video Title:</h6>
-              <p>{{videoTitle}}</p>
-              <h6>Video Link:</h6>
-              <p>{{videoLink}}</p>
-            </li>
-            <li class="list-group-item">
               <h6>Career Title:</h6>
               <p>{{careerTitle}}</p>
               <h6>Career Link:</h6>
-              <p></p>{{careerLink}}</p>
+               {{#if careerLink}}
+                  <a class="btn btn-sm btn-dark btn-wrap-text reducefontsize" target="_blank" href={{careerLink}}>{{careerLink}}</a>
+              {{/if}}
+             </li>
+            <li class="list-group-item">
+              <h6>Video Title:</h6>
+              <p>{{videoTitle}}</p>
+              <h6>Video Link:</h6>
+              {{#if videoLink}}
+                  <a class="btn btn-sm btn-dark btn-wrap-text reducefontsize" target="_blank" href={{videoLink}}>{{videoLink}}</a>
+              {{/if}}
             </li>
             <li class="list-group-item">
               <h6>Movie Title:</h6>
               <p>{{movieTitle}}</p>
               <h6>Movie Link:</h6>
-              <p>{{movieLink}}</p>
-            </li>
+              {{#if movieLink}}
+                  <a class="btn btn-sm btn-dark btn-wrap-text reducefontsize" target="_blank" href={{movieLink}}>{{movieLink}}</a>
+              {{/if}}
+             </li>
             <li class="list-group-item">
               <h6>Document Link:</h6>
-              <p>{{documentLink}}</p>
+              {{#if documentLink}}
+                  <a class="btn btn-sm btn-dark btn-wrap-text reducefontsize" target="_blank" href={{documentLink}}>{{documentLink}}</a>
+              {{/if}}
             </li>
             <li class="list-group-item">
               <h6>Image Name:</h6>

@@ -1,51 +1,55 @@
 <div class="dark">
-   <div class="home-inner">
-      <div class="container">
-         <div class="col-lg-12">
-            {{#each lessons}}
-            <div id="accordion" role="tablist">
-               <div class="card bg-info mt-2">
-                  <div class="card-header" role="tab" id="heading">
-                     <h5><a class="text-light" href="#{{id}}" data-parent="#accordion" data-toggle="collapse">
-                        Notebook {{lessonId}} - {{title}}
-                        </a>
-                     </h5>
-                  </div>
-                  <div id="{{id}}" class="card-body mb-2 text-center collapse">
-                     <h3>
-                     Video Clip
-                     <h3>
-                     <a class="btn btn-sm btn-danger btn-wrap-text reducefontsize" target="_blank" href={{videoLink}}>{{videoTitle}}</a>
-                     <div class="wrapper mt-2">
-                        <div class="h_iframe">
-                           <img class="ratio" src="http://placehold.it/16x9"/>
-                           <iframe src="{{videoLink}}" allowfullscreen></iframe>
-                        </div>
-                     </div>
-                     <hr>
-                     <h3>Career</h3>
-                     <a class="btn btn-sm btn-danger btn-wrap-text reducefontsize" target="_blank" href={{careerLink}}>{{careerTitle}}</a>
-                     <hr>
-                     <h3>Movie</h3>
-                     <a class="btn btn-sm btn-danger btn-wrap-text reducefontsize" target="_blank" href={{movieLink}}>{{movieTitle}}</a>
-                     <div class="wrapper mt-2">
-                        <div class="h_iframe">
-                           <img class="ratio" src="http://placehold.it/16x9"/>
-                           <iframe src="{{movieLink}}" allowfullscreen></iframe>
-                        </div>
-                     </div>
-                     <hr>
-                     <p>{{documentLink}}</p>
-                     <p>{{image}}</p>
-                  </div>
-               </div>
+  <div class="home-inner">
+    <div class="container">
+      <div class="col-lg-12">
+        {{#each lessons}}
+        <div id="accordion" role="tablist">
+          <div class="card bg-info mt-2">
+            <div class="card-header" role="tab" id="heading">
+              <h5><a class="text-light" href="#{{id}}" data-parent="#accordion" data-toggle="collapse">
+                  Notebook {{lessonId}} - {{title}}
+                </a>
+              </h5>
             </div>
-            {{else}}
-            <div class="alert bg-info text-light text-center">
-               <h5>There are no lessons available for {{subject}} - Semester {{semester}}</h5>
+            <div id="{{id}}" class="card-body mb-2 text-center collapse">
+              {{#if videoLink}}
+              <h3>Video Clip<h3>
+                  <a class="btn btn-sm btn-danger btn-wrap-text reducefontsize" target="_blank" href={{videoLink}}>{{videoTitle}}</a>
+                  <div class="wrapper mt-2">
+                    <div class="h_iframe">
+                      <img class="ratio" src="http://placehold.it/16x9" />
+                      <iframe src="{{videoLink}}" allowfullscreen></iframe>
+                    </div>
+                  </div>
+                  <hr>
+                  {{/if}}
+                  <h3>Career</h3>
+                  <a class="btn btn-sm btn-danger btn-wrap-text reducefontsize" target="_blank" href={{careerLink}}>{{careerTitle}}</a>
+                  <hr>
+                  {{#if movieLink}}
+                  <h3>Movie</h3>
+                  <a class="btn btn-sm btn-danger btn-wrap-text reducefontsize" target="_blank" href={{movieLink}}>{{movieTitle}}</a>
+                  <div class="wrapper mt-2">
+                    <div class="h_iframe">
+                      <img class="ratio" src="http://placehold.it/16x9" />
+                      <iframe src="{{movieLink}}" allowfullscreen></iframe>
+                    </div>
+                  </div>
+                  <hr>
+                  {{/if}}
+                  {{#if documentLink}}
+                  <a class="btn btn-sm btn-success btn-wrap-text reducefontsize" target="_blank" href={{documentLink}}>Notebook {{lessonId}}</a>
+                  {{/if}}
+                  <p>{{image}}</p>
             </div>
-            {{/each}}
-         </div>
+          </div>
+        </div>
+        {{else}}
+        <div class="alert bg-info text-light text-center">
+          <h5>There are no lessons available for {{subject}} - Semester {{semester}}</h5>
+        </div>
+        {{/each}}
       </div>
-   </div>
+    </div>
+  </div>
 </div>
