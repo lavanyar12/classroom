@@ -2,12 +2,47 @@
 
 <div class="card card-body mb-2">
 
-  <h4>{{code}} - {{name}}</h4>
-  <p>{{type}}</p>
-  <p>{{description}}</p>
-  <p>{{image}}</p>
-  <p>Image URL: {{imageRootFolderURL}}</p>
-  <p>Notebook URL: {{notebookRootFolderURL}}</p>
+  <div class="card-header" role="tab" id="heading">
+    <h5 class="mb-2">
+      {{code}} - {{name}}
+    </h5>
+  </div>
+
+  <ul class="list-group">
+
+    <li class="list-group-item">
+    <h6>Description:</h6>
+        <p>{{description}}</p>
+    </li>
+
+
+
+    <li class="list-group-item">
+      <h6>Notebook URL:</h6>
+      {{#if notebookRootFolderURL}}
+      <a class="btn btn-sm btn-dark btn-wrap-text reducefontsize" target="_blank" href={{notebookRootFolderURL}}>{{notebookRootFolderURL}}</a>
+      {{/if}}
+    </li>
+
+    <li class="list-group-item">
+      <h6>Image File:</h6>
+      <p>{{image}}</p>
+    </li>
+
+    <li class="list-group-item">
+      <h6>Image URL:</h6>
+      {{#if imageRootFolderURL}}
+      <a class="btn btn-sm btn-dark btn-wrap-text reducefontsize" target="_blank" href={{imageRootFolderURL}}>{{imageRootFolderURL}}</a>
+      {{/if}}
+    </li>
+
+    <li class="list-group-item">
+      <h6>Type:</h6>
+      <p>{{type}}</p>
+    </li>
+
+  </ul>
+
   <a class="btn btn-info btn-block" href="/subjects/edit/{{id}}">Edit</a>
   <!-- <input type="submit" class="btn btn-danger btn-block" value="Delete"> -->
 
