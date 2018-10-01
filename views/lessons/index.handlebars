@@ -1,6 +1,7 @@
 {{#if semester}}
 <div class="alert bg-success text-light text-center mt-2">
-  <h5>Found {{count}} lessons for {{subject}} - Semester {{semester}}</h3>
+  <h5>Found {{count}} lessons for {{subject}} - Semester {{semester}}</h5>
+  <p>{{notebookLink}}</p>
 </div>
 {{else}}
   <div class="alert bg-secondary text-light text-center mt-2">
@@ -9,6 +10,7 @@
 {{/if}}
 
 {{#each lessons}}
+
     <!-- ACCORDION -->
     <div id="accordion" role="tablist">
 
@@ -53,7 +55,7 @@
             <li class="list-group-item">
               <h6>Document Link:</h6>
               {{#if documentLink}}
-                  <a class="btn btn-sm btn-dark btn-wrap-text reducefontsize" target="_blank" href={{documentLink}}>{{documentLink}}</a>
+                  <a class="btn btn-sm btn-dark btn-wrap-text reducefontsize" target="_blank" href={{../notebookLink}}&preview={{documentLink}}>{{documentLink}}</a>
               {{/if}}
             </li>
             <li class="list-group-item">

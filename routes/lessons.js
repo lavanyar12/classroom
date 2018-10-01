@@ -100,6 +100,8 @@ router.get('/view/:subject/:semester', ensureAuthenticated, (req, res) => {
           lessons: lessons,
           count: count,
           subject: subjectObj.name,
+          notebookLink: subjectObj.notebookRootFolderURL,
+          imageLink: subjectObj.imageRootFolderURL,
           semester: req.params.semester,
           layout: 'main'
       })
@@ -112,6 +114,7 @@ router.get('/view/:subject/:semester', ensureAuthenticated, (req, res) => {
 router.get('/:subject/:semester', ensureAuthenticated, (req, res) => {
   Subject.find({}).then((results) => {
     var subjectObj = getByKey(results, req.params.subject)
+    console.log(subjectObj)
     Lesson.find({
       subject: req.params.subject,
       semester: req.params.semester
@@ -123,6 +126,8 @@ router.get('/:subject/:semester', ensureAuthenticated, (req, res) => {
         lessons: lessons,
         count: count,
         subject: subjectObj.name,
+        notebookLink: subjectObj.notebookRootFolderURL,
+        imageLink: subjectObj.imageRootFolderURL,
         semester: req.params.semester
       })
     })
