@@ -25,12 +25,18 @@ router.get('/', ensureAuthenticated, adminUser, (req, res) => {
 
 // --------- ADD Lessons form
 router.get('/add', ensureAuthenticated, adminUser, (req, res) => {
-  res.render('lessons/add')
+  Subject.find({}).then((results) => {
+    var subjectObj = getByKey(results, req.query.subject)
+    res.locals.selectedSubject = req.query.subject
+    res.locals.selectedSubjectName = subjectObj.name
+    res.render('lessons/add'), {
+      subjectObj: subjectObj
+    }
+  })
 })
 
 // --------- GET Lesson by id for EDIT form
-router.get('/edit/:id', ensureAuthenticated, adminUser, (req, res) => {
-  
+router.get('/edit/:id', ensureAuthenticated, adminUser, (req, res) => {  
   Lesson.findOne({
     _id: req.params.id
   })
@@ -114,7 +120,7 @@ router.get('/view/:subject/:semester', ensureAuthenticated, (req, res) => {
 router.get('/:subject/:semester', ensureAuthenticated, (req, res) => {
   Subject.find({}).then((results) => {
     var subjectObj = getByKey(results, req.params.subject)
-    console.log(subjectObj)
+    //console.log(subjectObj)
     Lesson.find({
       subject: req.params.subject,
       semester: req.params.semester
@@ -137,6 +143,8 @@ router.get('/:subject/:semester', ensureAuthenticated, (req, res) => {
 //---------- Process ADD form (POST)
 router.post('/', ensureAuthenticated, adminUser, (req, res) => {
   let errors = []
+  req.body.documentLink = 'NB'+req.body.lessonId+'.pdf'
+  req.body.image = 'IMAGE'+req.body.lessonId+'.jpg'
   if (errors.length > 0) {
     res.render('lessons/add', {
       errors: errors,
@@ -178,7 +186,7 @@ router.post('/', ensureAuthenticated, adminUser, (req, res) => {
       .save()
       .then(lesson => {
         req.flash('success_msg', 'Lesson added');
-        res.redirect('/lessons')
+        res.redirect('/lessons/'+lesson.subject+'/'+lesson.semester)
       })
   }
 })

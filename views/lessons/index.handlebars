@@ -53,8 +53,8 @@
              </li>
             <li class="list-group-item">
               <h6>Notebook Name:</h6>
-              {{#if documentLink}}
-                  <a class="btn btn-sm btn-dark btn-wrap-text reducefontsize" target="_blank" href={{../notebookLink}}&preview={{documentLink}}>{{documentLink}}</a>
+              {{#if ../notebookLink}}
+                  <a class="btn btn-sm btn-dark btn-wrap-text reducefontsize" target="_blank" href={{../notebookLink}}&preview=NB{{lessonId}}.pdf>NB{{lessonId}}.pdf</a>
               {{/if}}
             </li>
             <li class="list-group-item">

@@ -25,6 +25,7 @@
               <a href="/lessons/view/GEO/2" class="dropdown-item">Semester 2</a>
             </div>
           </li>
+          {{#if adminUser}}
           <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarDropdownMenuLink">Marine Biology</a>
             <div class="dropdown-menu w-25">
@@ -32,6 +33,7 @@
               <a href="/lessons/view/MB/2" class="dropdown-item">Semester 2</a>
             </div>
           </li>
+          {{/if}}
           <li class="nav-item">
            <a href="/users/studentlogout" class="nav-link">Logout</a>
           </li>
