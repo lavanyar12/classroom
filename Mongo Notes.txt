@@ -35,6 +35,10 @@ vidjot-dev  0.000GB
 
 > db.ideas.drop()
 
+db.subjects.drop()
+db.users.drop()
+db.lessons.drop()
+
 start mongodb
 
 >db.authors.count()

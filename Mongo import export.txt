@@ -5,8 +5,8 @@ mongoexport --db classroom --collection lessons --out lessons.json
 
 -----LOCAL IMPORT 
 mongoimport --db classroom --collection subjects --type json subjects.json
-mongoimport --db classroom --collection lessons --type json lessons.json
 mongoimport --db classroom --collection users --type json users.json
+mongoimport --db classroom --collection lessons --type json lessons.json
 
 ------Binary import export
 
@@ -41,6 +41,10 @@ MLAB EXPORT
 mongoexport --db csvimport --collection lessons --out lessons.json
 
 mongoexport -h ds249565.mlab.com:49565 -d classroom-prod -c lessons -u classroom -p knowledge101 --out lessons.json
+
+mongoexport -h ds249565.mlab.com:49565 -d classroom-prod -c subjects -u classroom -p knowledge101 --out subjects.json
+
+mongoexport -h ds249565.mlab.com:49565 -d classroom-prod -c users -u classroom -p knowledge101 --out users.json
 ----------
 
 -----CSV TSV - make sure there is an EOF and newline between the row is csv and tsv
