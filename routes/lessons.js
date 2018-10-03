@@ -61,6 +61,8 @@ router.delete('/:id', ensureAuthenticated, adminUser, (req, res) => {
 //---------- Process EDIT Lessons form (PUT)
 router.put('/:id', ensureAuthenticated, adminUser, (req, res) => {
   //console.log(req.body)
+  req.body.documentLink = 'NB'+req.body.lessonId+'.pdf'
+  req.body.image = 'IMAGE'+req.body.lessonId+'.jpg'
   Lesson.findOne({
     _id: req.params.id
   })
