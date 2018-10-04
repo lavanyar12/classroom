@@ -1,104 +1,25 @@
-{{#if semester}}
-<div class="alert bg-success text-light text-center mt-2">
-  <h5>Found {{count}} lessons for {{subject}} - Semester {{semester}}</h5>
-</div>
-{{else}}
-  <div class="alert bg-secondary text-light text-center mt-2">
-    Listing of all {{count}} lessons
-  </div>
-{{/if}}
-
-{{#each lessons}}
-
-    <!-- ACCORDION -->
-    <div id="accordion" role="tablist">
-
-      <div class="card text-dark bg-light mt-3">
-
-        <div class="card-header" role="tab" id="heading">
-          <h5 class="mb-2"><a class="text-dark" href="#{{id}}" data-parent="#accordion" data-toggle="collapse">
-            {{subject}} : Notebook {{lessonId}} - {{title}}
-          </a></h5>
-        </div>
-
-        <div id="{{id}}" class="card-body mb-2 collapse">
-          <ul class="list-group">
-            <li class="list-group-item">
-              <h6>Description:</h6>
-              <p>{{description}}</p>
-            </li>
-            <li class="list-group-item">
-              <h6>Career Title:</h6>
-              <p>{{careerTitle}}</p>
-              <h6>Career Link:</h6>
-               {{#if careerLink}}
-                  <a class="btn btn-sm btn-dark btn-wrap-text reducefontsize" target="_blank" href={{careerLink}}>{{careerLink}}</a>
-              {{/if}}
-             </li>
-            <li class="list-group-item">
-              <h6>Video Title:</h6>
-              <p>{{videoTitle}}</p>
-              <h6>Video Link:</h6>
-              {{#if videoLink}}
-                  <a class="btn btn-sm btn-dark btn-wrap-text reducefontsize" target="_blank" href={{videoLink}}>{{videoLink}}</a>
-              {{/if}}
-            </li>
-            <li class="list-group-item">
-              <h6>Movie Title:</h6>
-              <p>{{movieTitle}}</p>
-              <h6>Movie Link:</h6>
-              {{#if movieLink}}
-                  <a class="btn btn-sm btn-dark btn-wrap-text reducefontsize" target="_blank" href={{movieLink}}>{{movieLink}}</a>
-              {{/if}}
-             </li>
-            <li class="list-group-item">
-              <h6>Notebook Name:</h6>
-              {{#if ../notebookLink}}
-                  <a class="btn btn-sm btn-dark btn-wrap-text reducefontsize" target="_blank" href={{../notebookLink}}&preview=NB{{lessonId}}.pdf>NB{{lessonId}}.pdf</a>
-              {{/if}}
-            </li>
-            <li class="list-group-item">
-              <h6>Image Name:</h6>
-              <p>{{image}}</p>
-            </li>
-          </ul>
-          <a class="btn btn-info btn-block mb-2" href="/lessons/edit/{{id}}">Edit</a>
-          <!--<input type="submit" class="btn btn-dark btn-block" value="Delete"> -->
-          <!-- Trigger the modal with a button -->
-          <button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#del{{id}}">Delete {{title}}</button>
-
-          <!-- Modal -->
-          <div class="modal fade" id="del{{id}}" role="dialog">
-            <div class="modal-dialog modal-sm">
-              <!-- Modal content-->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                  <p>Are you sure you want to delete lesson
-                    <strong> {{title}} </strong>?</p>
-                </div>
-                <div class="modal-footer">
-                  <form method="post" action="/lessons/{{id}}?_method=DELETE" method="post">
-                    <input type="hidden" name=_method value="DELETE">
-                    <button type="submit" class="btn btn-success" id="modal-btn-yes">Yes</button>
-                  </form>
-                  <button type="button" class="btn btn-danger" data-dismiss="modal" id="modal-btn-no">No</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
+<div class="container mt-5">
+  <h3>Summary of Lessons</h3>
+  <table class="table mt-3">
+    <thead>
+      <tr>
+        <th>Subject</th>
+        <th>Semester</th>
+        <th># of Lessons</th>
+      </tr>
+    </thead>
+    {{#each lessons}}
+    <tbody>
+      <tr>
+        <td>{{_id.subject}}</td>
+        <td>{{_id.semester}}</td>
+        <td>{{count}}</td>
+      </tr>
+    </tbody>
+    {{else}}
+      <div class="alert bg-info text-light text-center mt-2">
+        No lessons found
       </div>
-
-    </div>
-
-{{else}}
-<!--
-<div class="alert bg-info text-light text-center mt-2">
-  No lessons available for {{subject}} in Semester {{semester}}
+    {{/each}}
+  </table>
 </div>
--->
-{{/each}}

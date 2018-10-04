@@ -9,7 +9,7 @@ var Subject = require('../models/subject');
 //-------------------------LESSONS ------------------------//
 
 // GET All lessons route
-router.get('/', ensureAuthenticated, adminUser, (req, res) => {
+router.get('/notinuse', ensureAuthenticated, adminUser, (req, res) => {
   Lesson.find({})
     .sort({ subject: 'asc' })
     .sort({ semester: 'asc' })
@@ -20,6 +20,18 @@ router.get('/', ensureAuthenticated, adminUser, (req, res) => {
         lessons: lessons,
         count: count
       })
+    })
+})
+
+// GET All lessons route
+router.get('/', ensureAuthenticated, adminUser, (req, res) => {
+  Lesson.aggregate([{ $group: { _id: {subject: "$subject", semester: "$semester"},  count:{ $sum: 1 } } } ])
+    .sort({ "_id.subject": 'asc' })
+    .sort({ "_id.semester": 'asc' })
+    .then(lessons => {
+       res.render('lessons/index', {
+        lessons: lessons,
+       })
     })
 })
 
@@ -130,7 +142,7 @@ router.get('/:subject/:semester', ensureAuthenticated, (req, res) => {
     .sort({ 'lessonId': 'asc' })
     .then(lessons => {
       const count = lessons.length
-      res.render('lessons/index', {
+      res.render('lessons/list', {
         lessons: lessons,
         count: count,
         subject: subjectObj.name,
