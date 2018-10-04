@@ -1,19 +1,20 @@
 <div class="container mt-5">
-  <h3>Summary of Lessons</h3>
-  <table class="table mt-3">
+  <h5 class="text-center">Summary of Lessons</h5>
+  <div class="table-responsive mt-3">          
+  <table class="table">
     <thead>
       <tr>
-        <th>Subject</th>
-        <th>Semester</th>
-        <th># of Lessons</th>
+        <th class="text-left">Subject</th>
+        <th class="text-center">Semester</th>
+        <th class="text-right"># of Lessons</th>
       </tr>
     </thead>
     {{#each lessons}}
     <tbody>
       <tr>
-        <td>{{_id.subject}}</td>
-        <td>{{_id.semester}}</td>
-        <td>{{count}}</td>
+        <td class="text-left"><a href="/lessons/{{_id.subject}}/{{_id.semester}}">{{_id.subjectName}}</a></td>
+        <td class="text-center">{{_id.semester}}</td>
+        <td class="text-right">{{count}}</td>
       </tr>
     </tbody>
     {{else}}
@@ -22,4 +23,5 @@
       </div>
     {{/each}}
   </table>
+  </div>
 </div>

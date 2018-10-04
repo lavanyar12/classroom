@@ -25,14 +25,21 @@ router.get('/notinuse', ensureAuthenticated, adminUser, (req, res) => {
 
 // GET All lessons route
 router.get('/', ensureAuthenticated, adminUser, (req, res) => {
-  Lesson.aggregate([{ $group: { _id: {subject: "$subject", semester: "$semester"},  count:{ $sum: 1 } } } ])
-    .sort({ "_id.subject": 'asc' })
-    .sort({ "_id.semester": 'asc' })
+  Subject.find({}).then((subjects) => {
+    Lesson.aggregate([{ $group: { _id: {subject: "$subject", semester: "$semester"},  count:{ $sum: 1 } } } ])
+    .sort({ "_id.subject": 'asc', "_id.semester": 'asc' })
     .then(lessons => {
+      lessons.forEach((lesson) => {
+        const subjectObj = getByKey(subjects, lesson._id.subject)
+        lesson._id.subjectName = subjectObj.name
+        console.log(lesson)
+        })
        res.render('lessons/index', {
         lessons: lessons,
+        subjects: subjects
        })
     })
+  })
 })
 
 // --------- ADD Lessons form
