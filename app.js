@@ -42,12 +42,12 @@ mongoose.connect(db.mongoURI, {
 app.engine('handlebars', exphbs({
   defaultLayout: 'default',
   helpers: { //not used yet
-    section: function(name, options) { 
+    section: function (name, options) {
       if (!this._sections) this._sections = {};
-        this._sections[name] = options.fn(this); 
-        return null;
-      }
-  }    
+      this._sections[name] = options.fn(this);
+      return null;
+    }
+  }
 }))
 app.set('view engine', 'handlebars');
 
@@ -75,7 +75,7 @@ app.use(passport.session())
 app.use(flash());
 
 // Global variables for messages
-app.use(function(req, res, next){
+app.use(function (req, res, next) {
   res.locals.success_msg = req.flash('success_msg');
   res.locals.error_msg = req.flash('error_msg');
   res.locals.error = req.flash('error');
@@ -111,6 +111,28 @@ app.get('/', (req, res) => {
   res.render('home', {
     layout: 'main'
   })
+})
+
+// Student login
+app.get('/users/studentlogin', (req, res) => {
+  if (res.locals.user) {
+    res.render('home', {
+      layout: 'main'
+    })
+  } else {
+    res.render('users/studentlogin', {
+      layout: 'main'
+    })
+  }
+})
+
+// Admin login
+app.get('/users/login', (req, res) => {
+  if (res.locals.user) {
+    res.redirect('/lessons')
+  } else {
+    res.render('users/login')
+  }
 })
 
 //Use routes

@@ -32,7 +32,6 @@ router.get('/', ensureAuthenticated, adminUser, (req, res) => {
       lessons.forEach((lesson) => {
         const subjectObj = getByKey(subjects, lesson._id.subject)
         lesson._id.subjectName = subjectObj.name
-        console.log(lesson)
         })
        res.render('lessons/index', {
         lessons: lessons,

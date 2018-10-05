@@ -5,17 +5,6 @@ const passport = require('passport');
 
 var User = require('../models/user');
 
-// Student login page
-router.get('/studentlogin', (req, res) => {
-  res.render('users/studentlogin', {
-    layout: 'main'
-  })
-})
-
-router.get('/login', (req,res) => {
-  res.render('users/login')
-})
-
 router.get('/register', (req,res) => {
   res.render('users/register')
 })
