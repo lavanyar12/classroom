@@ -104,7 +104,7 @@ router.put('/:id', ensureAuthenticated, adminUser, (req, res) => {
 
       lesson.save()
         .then(lesson => {
-          req.flash('success_msg', 'Lesson saved');
+          req.flash('success_msg', 'Lesson ' +  lesson.lessonId + ' saved');
           res.redirect('/lessons/'+lesson.subject+'/'+lesson.semester)
         })
     })
