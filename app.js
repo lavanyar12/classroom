@@ -81,7 +81,9 @@ app.use(function (req, res, next) {
   res.locals.error = req.flash('error');
   res.locals.user = req.user || null
   res.locals.adminUser = (req.user && req.user.accountType === 'ADMIN') || null
-  //console.log(req.user)
+  res.locals.studentSubject = (req.user && req.user.accountType != 'ADMIN') ? req.user.studentSubject : null
+  res.locals.studentSubjectName = (res.locals.studentSubject && res.locals.studentSubject === 'MB') ? 'Marine Biology' : 'Geology'
+  console.log(req.user)
   next();
 });
 

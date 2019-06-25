@@ -61,7 +61,8 @@ router.post('/register', (req, res) => {
             email: req.body.email,
             password: req.body.password,
             accountType: 'STUDENT',
-            username: req.body.username           
+            username: req.body.username,
+            studentSubject: req.body.studentSubject           
           });
           
           //now use becrypt to hash and save the password

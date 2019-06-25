@@ -16,24 +16,24 @@
             <li class="nav-item">
             <a href="/lessons" class="nav-link px-5 font-weight-bold">Lesson Maintenance</a>
             </li>
-        {{/if}}
-        {{#if user}}
           <li class="nav-item dropdown">
-            <a href="#" class="navbar-brand dropdown-toggle" data-toggle="dropdown" id="navbarDropdownMenuLink">Geology</a>
+            <a href="#" class="navbar-brand dropdown-toggle" data-toggle="dropdown" id="navbarDropdownMenuLink">Subject Links</a>
             <div class="dropdown-menu w-25">
-              <a href="/lessons/view/GEO/1" class="dropdown-item">Semester 1</a>
-              <a href="/lessons/view/GEO/2" class="dropdown-item">Semester 2</a>
+              <a href="/lessons/view/GEO/1" class="dropdown-item">Geology S1</a>
+              <a href="/lessons/view/GEO/2" class="dropdown-item">Geology S2</a>
+              <a href="/lessons/view/MB/1" class="dropdown-item">Marine Biology S1</a>
+              <a href="/lessons/view/MB/2" class="dropdown-item">Marine Biology S2</a>
             </div>
           </li>
-          {{#if adminUser}}
+        {{else}}
+          {{#if user.studentSubject}}
           <li class="nav-item dropdown">
-            <a href="#" class="navbar-brand dropdown-toggle" data-toggle="dropdown" id="navbarDropdownMenuLink">Marine Biology</a>
+            <a href="#" class="navbar-brand dropdown-toggle" data-toggle="dropdown" id="navbarDropdownMenuLink">{{studentSubjectName}}</a>
             <div class="dropdown-menu w-25">
-              <a href="/lessons/view/MB/1" class="dropdown-item">Semester 1</a>
-              <a href="/lessons/view/MB/2" class="dropdown-item">Semester 2</a>
+              <a href="/lessons/view/{{user.studentSubject}}/1" class="dropdown-item">Semester 1</a>
+              <a href="/lessons/view/{{user.studentSubject}}/2" class="dropdown-item">Semester 2</a>
             </div>
           </li>
-          {{/if}}
           <li class="nav-item">
            <a href="/users/studentlogout" class="nav-link">Logout</a>
           </li>
@@ -42,6 +42,7 @@
             <a href="/users/studentlogin" class="nav-link">Login</a>
           </li>
         {{/if}}
+      {{/if}}
       </ul>
     </div>
   </div>

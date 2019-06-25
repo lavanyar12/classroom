@@ -26,6 +26,10 @@ const UserSchema = new Schema({
   accountType:{
     type: String,
     required: true
+  },
+  studentSubject:{
+    type: String,
+    required: false
   }
 });
 
