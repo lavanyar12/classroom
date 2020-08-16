@@ -9,6 +9,7 @@ Desktop.ini
 $RECYCLE.BIN/
 
 node_modules
+classroom-prod
 
 # Windows Installer files
 *.cab
