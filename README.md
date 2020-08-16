@@ -14,6 +14,3 @@ http://localhost:5000/lessons
 Public site
 
 mrdrakesclassroom.com 
-
-Geology student : studentgeo/rocks123 
-Marine Biology student : studentmb/fish123
