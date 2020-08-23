@@ -83,6 +83,9 @@ app.use(function (req, res, next) {
   res.locals.adminUser = (req.user && req.user.accountType === 'ADMIN') || null
   res.locals.studentSubject = (req.user && req.user.accountType != 'ADMIN') ? req.user.studentSubject : null
   switch (res.locals.studentSubject) {
+    case 'MS':
+      res.locals.studentSubjectName = 'Marine Science'
+      break;
     case 'MB':
       res.locals.studentSubjectName = 'Marine Biology'
       break;
@@ -96,10 +99,9 @@ app.use(function (req, res, next) {
       res.locals.studentSubjectName = 'Forensics'
       break; 
     default:
-      res.locals.studentSubjectName = 'Marine Biology'
+      res.locals.studentSubjectName = 'Marine Science'
   }
-  //res.locals.studentSubjectName = (res.locals.studentSubject && res.locals.studentSubject === 'MB') ? 'Marine Biology' : 'Geology'
-  console.log(req.user)
+ console.log(req.user)
   next();
 });
 
