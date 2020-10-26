@@ -1,11 +1,12 @@
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
   module.exports = 
   {
-    mongoURI: 'mongodb://classroom:knowledge101@ds249565.mlab.com:49565/classroom-prod'
+    mongoURI: `${process.env.MONGODB_URI}`
   }
 } else {
   module.exports = 
   { 
-    mongoURI: 'mongodb://localhost/classroom'
+    mongoURI: 'mongodb://localhost/classroom',
+    //mongoURI: 'mongodb+srv://classroom:science101@cluster0.egfbt.mongodb.net/classDB'
   }
 }
