@@ -10,6 +10,8 @@ $RECYCLE.BIN/
 
 node_modules
 classroom-prod
+data
+.env
 
 # Windows Installer files
 *.cab

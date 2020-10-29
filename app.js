@@ -1,10 +1,9 @@
 const express = require('express')
-const fileUpload = require('express-fileupload')
 const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
+const handlebars = require('handlebars')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
-const validate = require("validate.js")
 const flash = require('connect-flash')
 const session = require('express-session')
 const path = require('path')
@@ -31,14 +30,15 @@ app.use(express.static(path.join(__dirname, 'public')))
 mongoose.Promise = global.Promise;
 
 //connect to mongoose remote DB on mlab or 
-
+console.log(`connecting to ${process.env.NODE_ENV} - ${db.mongoURI}`)
 mongoose.connect(db.mongoURI, {
-  //useMongoClient: true - not needed in newer Mongo
+   useNewUrlParser: true 
 })
   .then(() => console.log('Connection to MongoDB successful'))
   .catch(err => console.log(err))
 
 // Handlebars middleware - setting the engine
+const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access');
 app.engine('handlebars', exphbs({
   defaultLayout: 'default',
   helpers: { //not used yet
@@ -46,7 +46,9 @@ app.engine('handlebars', exphbs({
       if (!this._sections) this._sections = {};
       this._sections[name] = options.fn(this);
       return null;
-    }
+    },
+    // ...implement newly added insecure prototype access
+    handlebars: allowInsecurePrototypeAccess(handlebars)
   }
 }))
 app.set('view engine', 'handlebars');
@@ -101,7 +103,7 @@ app.use(function (req, res, next) {
     default:
       res.locals.studentSubjectName = 'Marine Science'
   }
- console.log(req.user)
+  //console.log(req.user)
   next();
 });
 
@@ -110,12 +112,14 @@ var Subject = require('./models/subject');
 //About route
 app.get('/about', (req, res) => {
   Subject.find({})
+    .lean()
     .sort({ name: 'asc' })
     .then(subjects => {
       res.render('about', {
         subjects: subjects,
         layout: 'main'
       })
+      console.log(subjects)
     })
 })
 
@@ -163,5 +167,5 @@ app.use('/users', users)
 const port = process.env.PORT || 5000
 
 server.listen(port, () => {
-  console.log(`Server started on port ${port}`)
+  console.log(`Server started on port ${port} env ${process.env.NODE_ENV}`)
 })
