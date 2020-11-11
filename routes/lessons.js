@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const {ensureAuthenticated, adminUser} = require('../helpers/auth')
 module.exports = router
+var validUrl = require('valid-url');
 
 var Lesson = require('../models/lesson');
 var Subject = require('../models/subject');
@@ -29,22 +30,22 @@ router.get('/', ensureAuthenticated, adminUser, (req, res) => {
     Lesson.aggregate([{ $group: { _id: {subject: "$subject", semester: "$semester"},  count:{ $sum: 1 } } } ])
     .sort({ "_id.subject": 'asc', "_id.semester": 'asc' })
     .then(lessons => {
-      lessons.forEach((lesson) => {
-        const subjectObj = getByKey(subjects, lesson._id.subject)
-        lesson._id.subjectName = subjectObj.name
+      lessons.forEach(async (lesson) => {
+        const subject = await subjects.find((x) => x.code === lesson._id.subject)
+        lesson._id.subjectName = subject.name
         })
-       res.render('lessons/index', {
-        lessons: lessons,
-        subjects: subjects
-       })
+        res.render('lessons/index', {
+          lessons: lessons,
+          subjects: subjects
+        })
     })
   })
 })
 
 // --------- ADD Lessons form
 router.get('/add', ensureAuthenticated, adminUser, (req, res) => {
-  Subject.find({}).then((results) => {
-    var subjectObj = getByKey(results, req.query.subject)
+  Subject.find({}).then((subjects) => {
+    var subjectObj = subjects.find((x) => x.code == req.query.subject)
     res.locals.selectedSubject = req.query.subject
     res.locals.selectedSubjectName = subjectObj.name
     res.render('lessons/add'), {
@@ -85,7 +86,6 @@ router.put('/:id', ensureAuthenticated, adminUser, (req, res) => {
     _id: req.params.id
   })
     .then(lesson => {
-
       //console.log(lesson)
       //new values
       lesson.subject = req.body.subject,
@@ -113,8 +113,8 @@ router.put('/:id', ensureAuthenticated, adminUser, (req, res) => {
 
 // GET Lessons by subject and semester # - VIEW only
 router.get('/view/:subject/:semester', ensureAuthenticated, (req, res) => {
-  Subject.find({}).then((results) => {
-    var subjectObj = getByKey(results, req.params.subject)
+  Subject.find({}).then((subjects) => {
+    var subjectObj = subjects.find((x) => x.code == req.params.subject)
     Lesson.find({
       subject: req.params.subject,
       semester: req.params.semester
@@ -122,6 +122,14 @@ router.get('/view/:subject/:semester', ensureAuthenticated, (req, res) => {
       .sort({ 'lessonId': 'asc' })
       .then(lessons => {
         const count = lessons.length
+        lessons.forEach((x) => {
+          if (validVideo(x.videoLink)){
+            x.validVideoUrl=true
+          }
+          if (validVideo(x.movieLink)){
+            x.validMovieUrl=true
+          } 
+        })
         res.render('lessons/view', {
           lessons: lessons,
           count: count,
@@ -138,8 +146,8 @@ router.get('/view/:subject/:semester', ensureAuthenticated, (req, res) => {
 
 // GET Lessons by subject and semester # - VIEW / EDIT
 router.get('/:subject/:semester', ensureAuthenticated, (req, res) => {
-  Subject.find({}).then((results) => {
-    var subjectObj = getByKey(results, req.params.subject)
+  Subject.find({}).then((subjects) => {
+    var subjectObj = subjects.find((x) => x.code == req.params.subject)
     //console.log(subjectObj)
     Lesson.find({
       subject: req.params.subject,
@@ -211,13 +219,15 @@ router.post('/', ensureAuthenticated, adminUser, (req, res) => {
   }
 })
 // END
-
 function getByKey(results, key) {
-  var object
-  for (var i = 0; i < results.length; i++) {
-    if (results[i].code === key) {
-      object = results[i]
-    }
+  return results.find((x) => x.code === key) 
+}
+
+function validVideo(url) {
+  if (validUrl.isUri(url) && !url.includes('coursera.org') || url.includes('ck12.org')){
+    return true
+  } 
+  else {
+    return false
   }
-  return object
 }
