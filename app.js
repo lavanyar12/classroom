@@ -30,12 +30,11 @@ app.use(express.static(path.join(__dirname, 'public')))
 mongoose.Promise = global.Promise;
 
 //connect to mongoose remote DB on mlab or 
-console.log(`connecting to ${process.env.NODE_ENV} - ${db.mongoURI}`)
 mongoose.connect(db.mongoURI, {
    useNewUrlParser: true 
 })
-  .then(() => console.log('Connection to MongoDB successful'))
-  .catch(err => console.log(err))
+  .then(() => console.log(`Connection to NODE_ENV [${process.env.NODE_ENV}] with MONGODB_URI [${db.mongoURI}] successful`))
+  .catch(err => console.log(`Connection to NODE_ENV [${process.env.NODE_ENV}] with MONGODB_URI [${db.mongoURI}] unsuccessful with ${err.error_msg}`))
 
 // Handlebars middleware - setting the engine
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access');
@@ -119,7 +118,6 @@ app.get('/about', (req, res) => {
         subjects: subjects,
         layout: 'main'
       })
-      console.log(subjects)
     })
 })
 
