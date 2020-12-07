@@ -23,39 +23,77 @@
       <label for="description">Notebook Description</label>
       <textarea class="form-control" name="description">{{lesson.description}}</textarea>
     </div>
+    <!--
     <div class="form-group">
-      <label for="videoTitle">Video Title</label>
-      <input type="text" class="form-control" name="videoTitle" value="{{lesson.videoTitle}}">
+      <label for="videos">Videos</label>
+      {{#if lesson.videos.length}}
+        {{#each lesson.videos as |video|}}
+          <div class="form-row">
+            <div class="col-auto">
+              <input type="text" class="form-control" name="video.title" value="{{video.title}}" placeholder="Video Title">
+            </div>
+            <div class="col-auto">
+              <input type="text" class="form-control" name="video.link" value="{{video.link}}" placeholder="Video URL">
+            </div>
+          </div>      
+        {{/each}}
+      {{/if}}
+    </div>-->
+    <div class="form-group" name="videos" value="{{lesson.videos}}">
+    <label for="videos">Videos</label>
+      {{#each lesson.videos as |video|}}
+      <div id="{{@index}}" class="form-row">
+        <div class="col-3">
+          <input type="text" class="form-control" name="videoTitles" value="{{video.title}}" placeholder="Video Title #{{video.id}}">   
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" name="videoLinks" value="{{video.link}}" placeholder="Video URL #{{video.id}}">
+        </div>
+      </div>   
+      {{/each}}
+      <!--div class="form-row">
+        <div class="col-3">
+          <input type="text" class="form-control" name="videoTitle" value="{{lesson.videoTitle}}" placeholder="Video Title">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" name="videoLink" value="{{lesson.videoLink}}" placeholder="Video URL">
+        </div>
+      </div-->      
     </div>
     <div class="form-group">
-      <label for="videoLink">Video URL</label>
-      <input type="text" class="form-control" name="videoLink" value="{{lesson.videoLink}}">
+    <label for="career">Career</label>
+      <div class="form-row">
+        <div class="col-3">
+          <input type="text" class="form-control" name="careerTitle" value="{{lesson.careerTitle}}" placeholder="Career Title">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" name="careerLink" value="{{lesson.careerLink}}" placeholder="Career Link">
+        </div>
+      </div>
     </div>
     <div class="form-group">
-      <label for="careerTitle">Career Title</label>
-      <input type="text" class="form-control" name="careerTitle" value="{{lesson.careerTitle}}">
+    <label for="movie">Movie</label>
+      <div class="form-row">
+        <div class="col-3">
+          <input type="text" class="form-control" name="movieTitle" value="{{lesson.movieTitle}}" placeholder="Movie Title">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" name="movieLink" value="{{lesson.movieLink}}" placeholder="Movie Link">
+        </div>
+      </div>
     </div>
     <div class="form-group">
-      <label for="careerLink">Career Link</label>
-      <input type="text" class="form-control" name="careerLink" value="{{lesson.careerLink}}">
+    <label for="docImage">Document and Image</label>
+      <div class="form-row">
+        <div class="col-3">
+          <input type="text" class="form-control" name="documentLink" value="{{lesson.documentLink}}" placeholder="Optional Document Link">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" name="image" value="{{lesson.image}}" placeholder="Optional Image">
+        </div>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="movieTitle">Movie Title</label>
-      <input type="text" class="form-control" name="movieTitle" value="{{lesson.movieTitle}}">
-    </div>
-    <div class="form-group">
-      <label for="movieLink">Movie Link</label>
-      <input type="text" class="form-control" name="movieLink" value="{{lesson.movieLink}}">
-    </div>
-    <div class="form-group">
-      <label for="documentLink">Notebook Name</label>
-      <input type="text" class="form-control" name="documentLink" value="{{lesson.documentLink
-      }}">
-    </div>
-    <div class="form-group">
-      <label for="image">Image Name</label>
-      <input type="text" class="form-control" name="image" value="{{lesson.image}}">
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Save your changes</button>
+    <a href="/lessons" class="btn btn-danger" role="button" aria-pressed="true">Cancel</a>
   </form>
 </div>
