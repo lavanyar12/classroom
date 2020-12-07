@@ -37,7 +37,15 @@ var lessonSchema = Schema({
     },
     movieLink: String,
     documentLink: String,
-    image: String
+    image: String,
+    videos: [
+        { 
+            id: Number,
+            title: String, 
+            link: String,
+            valid: Boolean
+        }
+    ]
 })
 
 var Lesson = mongoose.model('Lesson', lessonSchema);

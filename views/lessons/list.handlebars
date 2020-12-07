@@ -28,6 +28,22 @@
               <p>{{description}}</p>
             </li>
             <li class="list-group-item">
+              <h6>Videos:</h6>
+             {{#each videos as |video|}}
+              <p>{{video.id}}. {{video.title}}</p>
+              {{#if video.valid}}
+                  <a class="btn btn-sm btn-dark btn-wrap-text reducefontsize" target="_blank" href={{video.link}}>{{video.link}}</a>
+              {{/if}}
+              {{/each}}
+              <!--
+              <h6>Video Title:</h6>
+              <p>{{videoTitle}}</p>
+              <h6>Video Link:</h6>
+              {{#if videoLink}}
+                  <a class="btn btn-sm btn-dark btn-wrap-text reducefontsize" target="_blank" href={{videoLink}}>{{videoLink}}</a>
+              {{/if}}-->
+            </li>
+            <li class="list-group-item">
               <h6>Career Title:</h6>
               <p>{{careerTitle}}</p>
               <h6>Career Link:</h6>
@@ -35,14 +51,6 @@
                   <a class="btn btn-sm btn-dark btn-wrap-text reducefontsize" target="_blank" href={{careerLink}}>{{careerLink}}</a>
               {{/if}}
              </li>
-            <li class="list-group-item">
-              <h6>Video Title:</h6>
-              <p>{{videoTitle}}</p>
-              <h6>Video Link:</h6>
-              {{#if videoLink}}
-                  <a class="btn btn-sm btn-dark btn-wrap-text reducefontsize" target="_blank" href={{videoLink}}>{{videoLink}}</a>
-              {{/if}}
-            </li>
             <li class="list-group-item">
               <h6>Movie Title:</h6>
               <p>{{movieTitle}}</p>
