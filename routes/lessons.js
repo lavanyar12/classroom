@@ -48,6 +48,11 @@ router.get('/add', ensureAuthenticated, adminUser, (req, res) => {
     var subjectObj = subjects.find((x) => x.code == req.query.subject)
     res.locals.selectedSubject = req.query.subject
     res.locals.selectedSubjectName = subjectObj.name
+    let videos = []
+    for (let index = 0; index <= 3; index++) {
+        videos.push({id: index+1, title: null, link: null})
+    }
+    res.locals.videos = videos
     res.render('lessons/add'), {
       subjectObj: subjectObj
     }
@@ -100,13 +105,14 @@ router.post('/', ensureAuthenticated, adminUser, (req, res) => {
   let videos = []
   const videoTitles = req.body.videoTitles;
   const videoLinks = req.body.videoLinks;
+  // console.log(videoLinks);
+  // console.log(videoTitles)
   for (let index = 0; index <= 3; index++) {
-    let video = [];
     videos.push({
         id: index+1, 
-        title: videoTitles[index],
-        link: videoLinks[index],
-        valid: validVideo(videoLinks[index])
+        title: videoTitles[index] ? videoTitles[index] : '',
+        link: videoLinks[index] ? videoLinks[index] : '',
+        valid: videoLinks[index] ? validVideo(videoLinks[index]) : false
     })
   }
   
@@ -220,6 +226,9 @@ router.get('/view/:subject/:semester', ensureAuthenticated, (req, res) => {
       .sort({ 'lessonId': 'asc' })
       .then(lessons => {
         const count = lessons.length
+        lessons.forEach(x => {
+          x.validMovieUrl = x.movieLink ? validVideo(x.movieLink) : false
+        })
         res.render('lessons/view', {
           lessons: lessons,
           count: count,
@@ -299,7 +308,8 @@ function getByKey(results, key) {
 }
 
 function validVideo(url) {
-  if (url && validUrl.isUri(url) && !url.includes('coursera.org') || url.includes('ck12.org')){
+  if (url && validUrl.isUri(url) 
+      && !url.includes('coursera.org') && !url.includes('futurelearn.com') || url.includes('ck12.org')){
     return true
   } 
   else {

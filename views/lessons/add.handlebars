@@ -21,7 +21,7 @@
       <textarea class="form-control" name="description"></textarea>
     </div>
     <div class="form-group">
-    <label for="colFormLabelSm">Videos</label>
+    <!--label for="colFormLabelSm">Videos</label>
       <div class="form-row">
         <div class="col-3">
           <input type="text" class="form-control" name="videoTitles" placeholder="Video Title">
@@ -29,7 +29,17 @@
         <div class="col">
           <input type="text" class="form-control" name="videoLinks" placeholder="Video URL">
         </div>
-      </div>      
+      </div--> 
+      {{#each videos as |video|}}
+      <div id="{{@index}}" class="form-row">
+        <div class="col-3">
+          <input type="text" class="form-control" name="videoTitles" value="{{video.title}}" placeholder="Video Title #{{video.id}}">   
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" name="videoLinks" value="{{video.link}}" placeholder="Video URL #{{video.id}}">
+        </div>
+      </div>   
+      {{/each}}      
     </div>
     <div class="form-group">
     <label for="career">Career</label>
