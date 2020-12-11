@@ -308,8 +308,8 @@ function getByKey(results, key) {
 }
 
 function validVideo(url) {
-  if (url && validUrl.isUri(url) 
-      && !url.includes('coursera.org') && !url.includes('futurelearn.com') || url.includes('ck12.org')){
+  if (url && ((validUrl.isUri(url) && !url.includes('coursera.org') && !url.includes('futurelearn.com')) 
+    || url.includes('ck12.org') || url.includes('edpuzzle.com'))){
     return true
   } 
   else {
